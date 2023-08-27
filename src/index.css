@@ -131,16 +131,34 @@ input::placeholder,
   height: 48.38px !important;
   overflow: hidden !important;
 }
-/* .MuiStack-root.css-4jnixx-MuiStack-root{
-  height: 48.38px !important;
-    padding: 11.5px 14px !important;
 
-}
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
-  padding: 0.7rem .75rem !important;
 
-}
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root,
-.css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root{
+
+.rmsc .dropdown-container{
+  background-color: transparent !important;
+  border: 1px solid #757575 !important;
   color: #FFF !important;
-} */
+  border-radius: 0 !important;
+}
+.rmsc .dropdown-heading{
+  height: 48.38px !important;
+}
+.dropdown-content .search input,
+.dropdown-content .search input::placeholder,
+.dropdown-content .options{
+  background-color: #1A1A1A !important;
+  color: #FFF !important;
+}
+.dropdown-content label.select-item:hover  span,
+.dropdown-content label.select-item.selected span{
+  color: #000 !important;
+}
+
+
+.speaker .speaker-info{
+  background-color: #353535;
+  border: 1px solid #535353;
+}
+.speaker .position{
+  color: #989898;
+}

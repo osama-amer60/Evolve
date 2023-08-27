@@ -8,8 +8,23 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
+import { MultiSelect } from "react-multi-select-component";
+
+
+  const speakers = [
+    { first_name :"Genny" , last_name :"Wilson" , img:"person1.svg", position:"CEO of World International Energy Moderation Organization  ", email:"Genny@gmail.com" , label: "Genny Wilson", value: "Genny Wilson" },
+    { first_name :"Robert" , last_name :"Robert" , img:"person2.svg", position:"Executive at Green world peace ", email:"Robert@gmail.com" , label: "Robert Robert", value: "Robert Robert" },
+    {first_name :"Annette" , last_name :"Black" , img:"person3.svg", position:"News anchor at MsNBC ", email:"Annette@gmail.com" ,  label: "Annette Black", value: "Annette Black" },
+  ];
+  const stadium = [
+    { title :"Lusail Stadium" , capacity :"3.000" , img:"stadium1.png", label: "Lusail Stadium", value: "Lusail Stadium" },
+    { title :"Ataturk Olympic Stadium" , capacity :"3.000" , img:"stadium1.png", label: "Ataturk Olympic Stadium", value: "Ataturk Olympic Stadium" },
+ ];
 
 export default function CreateSession(props) {
+  const [speakerSelected, setSpeakerSelected] = useState([]);
+  const [moderatorSelected, setModeratorSelected] = useState([]);
+  const [venueSelected, setVenueSelected] = useState([]);
 
   let navigate = useNavigate()
   const [isLoading,setIsLoading] =useState(false)
@@ -27,6 +42,14 @@ export default function CreateSession(props) {
     let mySession = {...session}
     mySession[e.target.name] = e.target.value
     setSession(mySession) 
+  }
+
+  function removeSpeaker(id){
+    console.log(id);
+    speakerSelected.splice(id,1)
+    console.log(speakerSelected);
+    let mySpeakers = {...speakerSelected}
+    // setUser(mySpeakers) 
   }
 
   //submit form
@@ -64,7 +87,7 @@ export default function CreateSession(props) {
   }
   return (
     <>
-    <div className='sessions overflow-auto '>
+    <div className='sessions overflow-auto pb-5'>
       <div className='container-fluid  '>
         <div className="d-flex align-items-start justify-content-between py-3 px-2">
             <div className="">
@@ -152,18 +175,116 @@ export default function CreateSession(props) {
 
               <hr class="my-5"/>
 
-              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
-              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
-              
-              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
-              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
-              
+              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker">Speaker{ validateError.map((error, index) => error.message.includes('speaker') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <div>
+                  <MultiSelect
+                    options={speakers}
+                    value={speakerSelected}
+                    onChange={setSpeakerSelected}
+                    labelledBy="Select"
+                    Select="Select-options"
+                    isCreatable={true}
+                    closeOnChangedValue	={true}
+
+                    />
+                    {/* <pre>{JSON.stringify(speakerSelected.length)}</pre> */}
+                    {speakerSelected.length > 0?
+                        <div className=''>              
+                          {speakerSelected.map((speaker,i)=>
+                                <div className='speaker  my-2 ' key={i}>              
+                                  <div className='row'>              
+                                    <div   className="col col-md-11">
+                                      {/* {JSON.stringify(speaker)} */}
+                                      <div className='d-flex align-items-center speaker-info py-3 px-3'>
+                                          <img src={speaker.img} alt="" width={36} height={36}/>
+                                          <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
+                                          <span class="position"> {speaker.position}</span>
+                                      </div>
+                                    </div>
+                                    <div className="col col-1 ">
+                                      <div className='d-flex align-items-center justify-content-center w-100 h-100'>
+                                          <img src="delete.svg" alt=""  onClick={()=>removeSpeaker(i)}  width={28} height={28}/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          )}
+                        </div>:""}
+                </div>
+
+    
+
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker"> Moderator { validateError.map((error, index) => error.message.includes('speaker') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <div>
+                  <MultiSelect
+                    options={speakers}
+                    value={moderatorSelected}
+                    onChange={setModeratorSelected}
+                    labelledBy="Select"
+                    Select="Select-options"
+                    isCreatable={true}
+                    closeOnChangedValue	={true}
+
+                    />
+                    {/* <pre>{JSON.stringify(moderatorSelected.length)}</pre> */}
+                    {moderatorSelected.length > 0?
+                        <div className=''>              
+                          {moderatorSelected.map((speaker,i)=>
+                                <div className='speaker  my-2 ' key={i}>              
+                                  <div className='row'>              
+                                    <div   className="col col-md-11">
+                                      {/* {JSON.stringify(speaker)} */}
+                                      <div className='d-flex align-items-center speaker-info py-3 px-3'>
+                                          <img src={speaker.img} alt="" width={36} height={36}/>
+                                          <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
+                                          <span class="position"> {speaker.position}</span>
+                                      </div>
+                                    </div>
+                                    <div className="col col-1 ">
+                                      <div className='d-flex align-items-center justify-content-center w-100 h-100'>
+                                          <img src="delete.svg" alt=""  onClick={()=>removeSpeaker(i)}  width={28} height={28}/>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          )}
+                        </div>:""}
+                </div>
+
+    
               <hr class="my-5"/>
 
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker"> Venue { validateError.map((error, index) => error.message.includes('speaker') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <div>
+                  <MultiSelect
+                    options={stadium}
+                    value={venueSelected}
+                    onChange={setVenueSelected}
+                    labelledBy="Select"
+                    Select="Select-options"
+                    isCreatable={true}
+                    closeOnChangedValue	={true}
 
-              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
-              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
-              
+                    />
+                    {venueSelected.length > 0?
+                        <div className=''>              
+                          {venueSelected.map((speaker,i)=>
+                                <div className='speaker  my-2 ' key={i}>              
+                                  <div className='row'>              
+                                    <div   className="col col-md-12">
+                                      <div className='d-flex align-items-center speaker-info py-3 px-3'>
+                                          <img src={speaker.img} alt="" width={180} height={100}/>
+                                         <div className='mx-3'>
+                                            <h4 > <strong>{speaker.title} </strong></h4>
+                                             <p class="position">Venue Capacity:  {speaker.capacity}</p>
+                                         </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          )}
+                        </div>:""}
+                </div>
 
             </form> 
           </div>
