@@ -3,6 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import Joi from 'joi'
 import DropzoneDragDrop from './DropzoneDragDrop'
 
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
 
 export default function CreateSession(props) {
 
@@ -104,9 +109,6 @@ export default function CreateSession(props) {
               <input onChange={getSessionData} className='form-control' type="text"  id='subTitle'name='subTitle'  placeholder='Start Typing...' />
             
 
-              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error, index) => error.message.includes('description') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
-              <textarea onChange={getSessionData} className='form-control' rows={2} type="text"  id='description'name='description'  placeholder='Type details'/>
-            
                 <DropzoneDragDrop/>
 
               <div className="row">
@@ -114,10 +116,55 @@ export default function CreateSession(props) {
                     <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="date"  >Date   { validateError.map((error, index) => error.message.includes('date') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
                      <input onChange={getSessionData} className='form-control' type="date"  id='date'name='date'  placeholder='Start Typing...' />
                 </div>
-                <div className="col"></div>
-                <div className="col"></div>
+                <div className="col-3">
+                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="date"  >From   { validateError.map((error, index) => error.message.includes('date') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer
+                      components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
+                    >
+                      <DemoItem >
+                        <TimePicker views={['hours', 'minutes']} />
+                      </DemoItem>
+          
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
+                <div className="col-3">
+                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="date"  >Till   { validateError.map((error, index) => error.message.includes('date') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer
+                      components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
+                    >
+                      <DemoItem >
+                        <TimePicker views={['hours', 'minutes']}  />
+                      </DemoItem>
+          
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </div>
               </div>
             
+
+            
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error, index) => error.message.includes('description') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+              <textarea onChange={getSessionData} className='form-control' rows={3} type="text"  id='description'name='description'  placeholder='Type details'/>
+            
+
+              <hr class="my-5"/>
+
+              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
+              
+              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
+              
+              <hr class="my-5"/>
+
+
+              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
+              
+
             </form> 
           </div>
         </div>
