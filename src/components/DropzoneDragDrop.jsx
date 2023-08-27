@@ -26,7 +26,6 @@ function DropzoneDragDrop() {
           </div>
         </div>
       </div>
-      {error && <p className="error-message">{error}</p>}
       {/* <aside>
         <h4>Files</h4> 
         <ul>{files}</ul>

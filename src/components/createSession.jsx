@@ -12,8 +12,9 @@ export default function CreateSession(props) {
   const [error,setError] = useState('')
   const [session,setSession] = useState({
     title:'',
-    subtitle :'',
+    subTitle :'',
     description:'',
+    date:'',
   })
 
   //put session's properties's values from form
@@ -50,8 +51,9 @@ export default function CreateSession(props) {
   function validateRegisterForm(){
     let scheme = Joi.object({
       title : Joi.string().required(),
-      subtitle  : Joi.string().required(),
+      subTitle  : Joi.string().required(),
       description : Joi.string().required(),
+      date : Joi.date().required(),
     })
     return scheme.validate(session,{abortEarly:false})
   }
@@ -72,7 +74,8 @@ export default function CreateSession(props) {
                 <span >Cancel</span>
               </Link>
               <button  id="submitButton" type="submit" form="myForm"  className="p-2 px-4 fw-bolder bg-white  text-dark d-flex align-items-center justify-content-center text-dark text-decoration-none" >
-                <span > {isLoading ?<i className='fas fa-spinner fa-spin'></i>: `Next`}</span>                
+                {/* <span > {isLoading ?<i className='fas fa-spinner fa-spin'></i>: `Next`}</span>                 */}
+                <span > Next</span>                
               </button>
           </div>
         </div>
@@ -87,8 +90,8 @@ export default function CreateSession(props) {
               
 
 
-              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-center justify-content-between' htmlFor="subtitle">
-                <div className='d-flex align-items-start'>Session Subtitle  { validateError.map((error, index) => error.message.includes('subtitle') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}</div> 
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-center justify-content-between' htmlFor="subTitle">
+                <div className='d-flex align-items-start'>Session Subtitle  { validateError.map((error, index) => error.message.includes('subTitle') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}</div> 
                 <div className='note'>
                   <img src="question.svg" alt="" />
                   <div className='bg-dark text-white p-3 ps-4 note-content'>
@@ -98,14 +101,23 @@ export default function CreateSession(props) {
                   </div>
                 </div>
               </label>
-              <input onChange={getSessionData} className='form-control' type="text"  id='subtitle'name='subtitle'  placeholder='Start Typing...' />
+              <input onChange={getSessionData} className='form-control' type="text"  id='subTitle'name='subTitle'  placeholder='Start Typing...' />
             
 
               <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error, index) => error.message.includes('description') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
-              <textarea onChange={getSessionData} className='form-control' rows={2} type="number"  id='description'name='description'  placeholder='Type details'/>
+              <textarea onChange={getSessionData} className='form-control' rows={2} type="text"  id='description'name='description'  placeholder='Type details'/>
             
                 <DropzoneDragDrop/>
 
+              <div className="row">
+                <div className="col-6">
+                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="date"  >Date   { validateError.map((error, index) => error.message.includes('date') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+                     <input onChange={getSessionData} className='form-control' type="date"  id='date'name='date'  placeholder='Start Typing...' />
+                </div>
+                <div className="col"></div>
+                <div className="col"></div>
+              </div>
+            
             </form> 
           </div>
         </div>
