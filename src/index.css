@@ -1,0 +1,41 @@
+.py-2-5 {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+.nav-bg,
+.sidebar {
+  background-color: #2e2e2e;
+  border: 1px solid #404040;
+  color: #fff;
+}
+.sidebar {
+  height: 100vh;
+}
+.bg-new-gray {
+  background-color: #404040;
+}
+
+.layout-bg {
+  background-color: #1a1a1a;
+}
+.sessions-head-bg {
+  background-color: #2e2e2e;
+}
+.sessions-head-color {
+  color: #bababa;
+}
+.sessions-body-bg {
+  background-color: #353535;
+}
+.sessions-body-color {
+  color: #bababa;
+}
+.all-sessions-color {
+  color: #828282;
+}
+.sessions-border {
+  border-bottom: 1px solid #434343;
+}
+.cancel-btn {
+  border: 1px solid #404040;
+}
