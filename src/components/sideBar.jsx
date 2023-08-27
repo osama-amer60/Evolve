@@ -14,11 +14,11 @@ export default function NavBar(props) {
                 Dropdown button
               </button>
               <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                <li><a className="dropdown-item active" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
+                <li><Link className="dropdown-item active" to="#">Action</Link></li>
+                <li><Link className="dropdown-item" to="#">Another action</Link></li>
+                <li><Link className="dropdown-item" to="#">Something else here</Link></li>
                 <li></li>
-                <li><a className="dropdown-item" href="#">Separated link</a></li>
+                <li><Link className="dropdown-item" to="#">Separated link</Link></li>
               </ul>
             </div>
             </li>

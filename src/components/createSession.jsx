@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import Joi from 'joi'
-
+import DropzoneDragDrop from './DropzoneDragDrop'
 
 
 export default function CreateSession(props) {
@@ -11,9 +10,9 @@ export default function CreateSession(props) {
   const [isLoading,setIsLoading] =useState(false)
   const [validateError,setValidateError] = useState([])
   const [error,setError] = useState('')
-  const [ session,setSession] = useState({
-    session_title:'',
-    session_subtitle :'',
+  const [session,setSession] = useState({
+    title:'',
+    subtitle :'',
     description:'',
   })
 
@@ -36,6 +35,7 @@ export default function CreateSession(props) {
         setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
+        console.log(session);
           // let {data} = await  axios.post(`https://route-egypt-api.herokuapp.com/signup`,session)
           // if(data.message =="success"){
           //   setIsLoading(false)
@@ -49,9 +49,9 @@ export default function CreateSession(props) {
 
   function validateRegisterForm(){
     let scheme = Joi.object({
-      session_title : Joi.string().alphanum().min(3).max(10).required(),
-      session_subtitle  : Joi.string().alphanum().min(3).max(10).required(),
-      description : Joi.string().min(16).max(90).required(),
+      title : Joi.string().required(),
+      subtitle  : Joi.string().required(),
+      description : Joi.string().required(),
     })
     return scheme.validate(session,{abortEarly:false})
   }
@@ -82,13 +82,13 @@ export default function CreateSession(props) {
         <div className='mx-5'>
           <div className="form-container mx-5 p-5">
             <form onSubmit={submitSessionForm} id="myForm" className=''>
-              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="session_title">Session Title { validateError.map((error)=> error.message.includes('session_title') ? <span className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
-              <input onChange={getSessionData} className='form-control'  type="text"  id='session_title' name='session_title' placeholder='Start Typing...'/>
+              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
               
 
 
-              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-center justify-content-between' htmlFor="session_subtitle">
-                <div className='d-flex align-items-start'>Session Subtitle  { validateError.map((error)=> error.message.includes('session_subtitle') ? <div className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}</div> 
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-center justify-content-between' htmlFor="subtitle">
+                <div className='d-flex align-items-start'>Session Subtitle  { validateError.map((error, index) => error.message.includes('subtitle') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}</div> 
                 <div className='note'>
                   <img src="question.svg" alt="" />
                   <div className='bg-dark text-white p-3 ps-4 note-content'>
@@ -98,13 +98,13 @@ export default function CreateSession(props) {
                   </div>
                 </div>
               </label>
-              <input onChange={getSessionData} className='form-control' type="text"  id='session_subtitle'name='session_subtitle'  placeholder='Start Typing...' />
+              <input onChange={getSessionData} className='form-control' type="text"  id='subtitle'name='subtitle'  placeholder='Start Typing...' />
             
 
-              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error)=> error.message.includes('description') ? <div className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error, index) => error.message.includes('description') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
               <textarea onChange={getSessionData} className='form-control' rows={2} type="number"  id='description'name='description'  placeholder='Type details'/>
             
-
+                <DropzoneDragDrop/>
 
             </form> 
           </div>
