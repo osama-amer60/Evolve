@@ -4,6 +4,7 @@
 }
 
 .nav-bg,
+.form-container,
 .sidebar {
   background-color: #2e2e2e;
   border: 1px solid #404040;
@@ -39,4 +40,18 @@
 }
 .cancel-btn {
   border: 1px solid #404040;
+}
+
+
+.form-control{
+  background-color: transparent !important;
+  border: 1px solid #757575 !important;
+  padding: 0.7rem .75rem !important;
+  color: #FFF !important;
+}
+::placeholder { /* Firefox 19+ */
+  color: #535353 !important;
+}
+.error{
+  color: #FDA29B;
 }

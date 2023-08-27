@@ -7,13 +7,13 @@ const Layout = ({ children }) => {
     <>
       <div>
         <NavBar />
-        <div class="layout-bg">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-2">
+        <div className="layout-bg">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-2">
                 <SideBar />
               </div>
-              <div class="col-10">
+              <div className="col-10">
                 <main>{children}</main>
               </div>
             </div>
