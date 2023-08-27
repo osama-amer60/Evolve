@@ -22,26 +22,46 @@ import { MultiSelect } from "react-multi-select-component";
  ];
 
 export default function CreateSession(props) {
+
+
   const [speakerSelected, setSpeakerSelected] = useState([]);
   const [moderatorSelected, setModeratorSelected] = useState([]);
   const [venueSelected, setVenueSelected] = useState([]);
 
-  let navigate = useNavigate()
+   const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  const handleFileDrop = (acceptedFiles) => {
+    setUploadedFiles(acceptedFiles);
+    console.log(uploadedFiles);
+    session.cover_image = uploadedFiles[0]
+    console.log(session);
+  };
+
+
   const [isLoading,setIsLoading] =useState(false)
   const [validateError,setValidateError] = useState([])
   const [error,setError] = useState('')
   const [session,setSession] = useState({
+    // speaker_ids:'',
+    // moderator_ids:'',
     title:'',
     subTitle :'',
     description:'',
+    cover_image:"",
     date:'',
+    // from:'',
+    // till:'',
+    // event_id:'',
   })
 
   //put session's properties's values from form
   function getSessionData(e){
+    // console.log(e.target.name);
+    // console.log(e.target.value);
     let mySession = {...session}
     mySession[e.target.name] = e.target.value
     setSession(mySession) 
+    // console.log(mySession);
   }
 
   function removeSpeaker(id){
@@ -55,16 +75,21 @@ export default function CreateSession(props) {
   //submit form
   async  function  submitSessionForm(e){
       e.preventDefault()
-      setIsLoading(true)
-
+      // setIsLoading(true)
+      console.log('session');
       //call validation function
       let validateResult =  validateRegisterForm()
+      // session.cover_image = uploadedFiles
+
       //if the validation function return error
       if(validateResult.error){
+        console.log(validateResult.error.details);
+
         setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
-        console.log(session);
+          console.log(session);
+
           // let {data} = await  axios.post(`https://route-egypt-api.herokuapp.com/signup`,session)
           // if(data.message =="success"){
           //   setIsLoading(false)
@@ -81,7 +106,8 @@ export default function CreateSession(props) {
       title : Joi.string().required(),
       subTitle  : Joi.string().required(),
       description : Joi.string().required(),
-      date : Joi.date().required(),
+      date : Joi.string().required(),
+      cover_image: Joi.object().unknown(true),
     })
     return scheme.validate(session,{abortEarly:false})
   }
@@ -129,10 +155,9 @@ export default function CreateSession(props) {
                   </div>
                 </div>
               </label>
-              <input onChange={getSessionData} className='form-control' type="text"  id='subTitle'name='subTitle'  placeholder='Start Typing...' />
-            
+              <input onChange={getSessionData} className='form-control' type="text"  id='subTitle'name='subTitle'  placeholder='Start Typing...' />          
 
-                <DropzoneDragDrop/>
+                <DropzoneDragDrop onFileDrop={handleFileDrop} data={validateError}/>
 
               <div className="row">
                 <div className="col-6">
@@ -140,7 +165,7 @@ export default function CreateSession(props) {
                      <input onChange={getSessionData} className='form-control' type="date"  id='date'name='date'  placeholder='Start Typing...' />
                 </div>
                 <div className="col-3">
-                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="date"  >From   { validateError.map((error, index) => error.message.includes('date') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor=""  >From   </label>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer
                       components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
@@ -153,7 +178,7 @@ export default function CreateSession(props) {
                   </LocalizationProvider>
                 </div>
                 <div className="col-3">
-                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="date"  >Till   { validateError.map((error, index) => error.message.includes('date') ? <div key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor=""  >Till    </label>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer
                       components={['MobileTimePicker', 'MobileTimePicker', 'MobileTimePicker']}
@@ -294,3 +319,4 @@ export default function CreateSession(props) {
     </>
   )
 }
+ 
