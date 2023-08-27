@@ -57,7 +57,7 @@ export default function CreateSession(props) {
   }
   return (
     <>
-    <div className='sessions'>
+    <div className='sessions overflow-auto '>
       <div className='container-fluid  '>
         <div className="d-flex align-items-start justify-content-between py-3 px-2">
             <div className="">
@@ -78,24 +78,36 @@ export default function CreateSession(props) {
         </div>
       </div>
 
-      <div className="container">
-        <div className="form-container mx-5 p-5">
-          <form onSubmit={submitSessionForm} id="myForm">
-            <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="session_title">Session Title { validateError.map((error)=> error.message.includes('session_title') ? <span className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
-            <input onChange={getSessionData} className='form-control'  type="text"  id='session_title' name='session_title' placeholder='Start Typing...'/>
+      <div className="container ">
+        <div className='mx-5'>
+          <div className="form-container mx-5 p-5">
+            <form onSubmit={submitSessionForm} id="myForm" className=''>
+              <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="session_title">Session Title { validateError.map((error)=> error.message.includes('session_title') ? <span className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+              <input onChange={getSessionData} className='form-control'  type="text"  id='session_title' name='session_title' placeholder='Start Typing...'/>
+              
+
+
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-center justify-content-between' htmlFor="session_subtitle">
+                <div className='d-flex align-items-start'>Session Subtitle  { validateError.map((error)=> error.message.includes('session_subtitle') ? <div className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}</div> 
+                <div className='note'>
+                  <img src="question.svg" alt="" />
+                  <div className='bg-dark text-white p-3 ps-4 note-content'>
+                        Unique info about <br />
+                        the session, that will be<br />
+                        displayed under the title
+                  </div>
+                </div>
+              </label>
+              <input onChange={getSessionData} className='form-control' type="text"  id='session_subtitle'name='session_subtitle'  placeholder='Start Typing...' />
+            
+
+              <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error)=> error.message.includes('description') ? <div className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
+              <textarea onChange={getSessionData} className='form-control' rows={2} type="number"  id='description'name='description'  placeholder='Type details'/>
             
 
 
-            <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="session_subtitle">Session Subtitle  { validateError.map((error)=> error.message.includes('session_subtitle') ? <div className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}</label>
-            <input onChange={getSessionData} className='form-control' type="text"  id='session_subtitle'name='session_subtitle'  placeholder='Start Typing...' />
-           
-
-            <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="description"  >Description   { validateError.map((error)=> error.message.includes('description') ? <div className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></div>:"")}  </label>
-            <textarea onChange={getSessionData} className='form-control' rows={2} type="number"  id='description'name='description'  placeholder='Type details'/>
-           
-
-
-          </form> 
+            </form> 
+          </div>
         </div>
       </div>
     </div>

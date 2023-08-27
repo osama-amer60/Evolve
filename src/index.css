@@ -2,6 +2,9 @@
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
 }
+.main-section,.sessions{
+  height: 100%;
+}
 
 .nav-bg,
 .form-container,
@@ -49,9 +52,43 @@
   padding: 0.7rem .75rem !important;
   color: #FFF !important;
 }
-::placeholder { /* Firefox 19+ */
+::placeholder { 
   color: #535353 !important;
 }
 .error{
   color: #FDA29B;
+}
+
+.note{
+  position: relative;
+  cursor: pointer;
+}
+.note-content {
+  position: absolute;
+  top: -110%;
+  left: 120%;
+  margin-top: 10px;
+  width: 200px;
+  opacity: 0;
+  -webkit-transform: translate3d(0, -30px, 0);
+          transform: translate3d(0, -30px, 0);
+  -webkit-transition: all 150ms linear;
+  -o-transition: all 150ms linear;
+  transition: all 150ms linear;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+  visibility: hidden;
+  pointer-events: none;
+  clip-path: polygon(4% 0%, 100% 0%, 100% 100%, 4% 100% , 4% 45%, 0% 50% , 4% 55%);
+    background-color: #1A1A1A !important;
+   
+  
+}
+  
+.note:hover .note-content {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translate3d(0, -15px, 0);
+          transform: translate3d(0, -15px, 0);
 }
