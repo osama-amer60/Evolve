@@ -2,7 +2,8 @@
   padding-top: 0.85rem;
   padding-bottom: 0.85rem;
 }
-.main-section,.sessions{
+.main-section,
+.sessions {
   height: 100%;
 }
 
@@ -45,23 +46,22 @@
   border: 1px solid #404040;
 }
 
-
-.form-control{
+.form-control {
   background-color: transparent !important;
   border: 1px solid #757575 !important;
-  padding: 0.7rem .75rem !important;
-  color: #FFF !important;
+  padding: 0.7rem 0.75rem !important;
+  color: #fff !important;
   border-radius: 0 !important;
 }
 input::placeholder,
-::placeholder { 
+::placeholder {
   color: #535353 !important;
 }
-.error{
-  color: #FDA29B;
+.error {
+  color: #fda29b;
 }
 
-.note{
+.note {
   position: relative;
   cursor: pointer;
 }
@@ -73,7 +73,7 @@ input::placeholder,
   width: 200px;
   opacity: 0;
   -webkit-transform: translate3d(0, -30px, 0);
-          transform: translate3d(0, -30px, 0);
+  transform: translate3d(0, -30px, 0);
   -webkit-transition: all 150ms linear;
   -o-transition: all 150ms linear;
   transition: all 150ms linear;
@@ -82,84 +82,86 @@ input::placeholder,
   line-height: 1.4;
   visibility: hidden;
   pointer-events: none;
-  clip-path: polygon(4% 0%, 100% 0%, 100% 100%, 4% 100% , 4% 45%, 0% 50% , 4% 55%);
-    background-color: #1A1A1A !important;
-   
-  
+  clip-path: polygon(
+    4% 0%,
+    100% 0%,
+    100% 100%,
+    4% 100%,
+    4% 45%,
+    0% 50%,
+    4% 55%
+  );
+  background-color: #1a1a1a !important;
 }
-  
+
 .note:hover .note-content {
   opacity: 1;
   visibility: visible;
   -webkit-transform: translate3d(0, -15px, 0);
-          transform: translate3d(0, -15px, 0);
+  transform: translate3d(0, -15px, 0);
 }
 
-.upload-space{
+.upload-space {
   border: 1px dashed #757575 !important;
-
 }
-.img-container{
+.img-container {
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.05);
   width: fit-content;
   margin: auto;
 }
-.img-container img{
+.img-container img {
   width: 65px;
 }
-.MuiStack-root.css-bkzwk2-MuiStack-root{
+.MuiStack-root.css-bkzwk2-MuiStack-root {
   padding-top: 0 !important;
   background-color: transparent !important;
-    border: 1px solid #757575 !important;
-    /* color: #FFF !important; */
-    border-radius: 0 !important;
-    font-size: 1rem;
-    font-weight: 400;
+  border: 1px solid #757575 !important;
+  /* color: #FFF !important; */
+  border-radius: 0 !important;
+  font-size: 1rem;
+  font-weight: 400;
 }
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input::placeholder{
-  color: #FFF !important;
-} 
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input::placeholder {
+  color: #fff !important;
+}
 .css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root,
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
-  color: #FFF !important;
-} 
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  color: #fff !important;
+}
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 11.5px 14px !important;
-} 
-.MuiStack-root.css-bkzwk2-MuiStack-root{
+}
+.MuiStack-root.css-bkzwk2-MuiStack-root {
   height: 48.38px !important;
   overflow: hidden !important;
 }
 
-
-
-.rmsc .dropdown-container{
+.rmsc .dropdown-container {
   background-color: transparent !important;
   border: 1px solid #757575 !important;
-  color: #FFF !important;
+  color: #fff !important;
   border-radius: 0 !important;
 }
-.rmsc .dropdown-heading{
+.rmsc .dropdown-heading {
   height: 48.38px !important;
 }
 .dropdown-content .search input,
 .dropdown-content .search input::placeholder,
-.dropdown-content .options{
-  background-color: #1A1A1A !important;
-  color: #FFF !important;
+.dropdown-content .options {
+  background-color: #1a1a1a !important;
+  color: #fff !important;
 }
-.dropdown-content label.select-item:hover  span,
-.dropdown-content label.select-item.selected span{
+.dropdown-content label.select-item:hover span,
+.dropdown-content label.select-item.selected span {
   color: #000 !important;
 }
 
-
-.speaker .speaker-info{
+.speaker .speaker-info {
   background-color: #353535;
   border: 1px solid #535353;
 }
-.speaker .position{
+.speaker .position {
   color: #989898;
 }
 
@@ -187,5 +189,32 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-text,
 input[type="date"].date-input--has-value::-webkit-datetime-edit-month-field,
 input[type="date"].date-input--has-value::-webkit-datetime-edit-day-field,
 input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
-  color: #FFFF !important;
+  color: #ffff !important;
+}
+.side-bar .css-dip3t8,
+.side-bar .css-1wvake5 {
+  background-color: #2e2e2e;
+  border: none !important;
+  color: #fff;
+}
+.css-1t8x7v1 > .ps-menu-button:hover,
+.css-1tqrhto > .ps-menu-button:hover,
+.css-z5rm24,
+.css-16jesut > .ps-menu-button:hover {
+  background-color: transparent !important;
+}
+.collapse-btn {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  z-index: 10;
+  background-color: transparent;
+  border: none;
+}
+.main-menu {
+  border-bottom: 1px solid #404040;
+  padding: 12px 0;
+}
+.css-1jp6z4y {
+  background-color: #1a1a1a !important;
 }
