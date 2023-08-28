@@ -12,8 +12,7 @@ export default function NavBar(props) {
   
    <div className='container-fluid sidebar'>
    <div style={{ display: 'flex', height: '100%', minHeight: '400px' }}>
-      <Sidebar collapsed={collapsed}>
-     
+      <Sidebar collapsed={collapsed}>     
           <Menu>
           <MenuItem   className="main-menu pt-4" component={<Link to="/" />}> <img src="home.svg" alt=""  width={40}/> Home</MenuItem>
             <SubMenu className="main-menu " label="Planning" icon={<img src="planning.svg" alt="" className="" width={40} />}>
@@ -30,6 +29,13 @@ export default function NavBar(props) {
             </SubMenu>
 
           </Menu>
+         
+        <div className='poweredBy'>
+          <div> 
+            <span>Powered By bl:nk</span>
+            <span>V 3.0.1</span>
+          </div>
+        </div>
       </Sidebar>
           <main style={{ padding: 10 }}>
             <div>
@@ -39,6 +45,7 @@ export default function NavBar(props) {
               </button>
             </div>
         </main>
+      
     </div>
    </div>
     </>

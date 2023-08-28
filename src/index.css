@@ -218,3 +218,12 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
 .css-1jp6z4y {
   background-color: #1a1a1a !important;
 }
+.poweredBy {
+  margin-top: 45vh;
+  display: none;
+}
+.poweredBy > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
