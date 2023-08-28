@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <div className="">
         <NavBar />
         <div className="layout-bg  d-flex">
-          <div className="side-bar position-relative">
+          <div className="side-bar ">
             <SideBar />
           </div>
           <div className="container-fluid">

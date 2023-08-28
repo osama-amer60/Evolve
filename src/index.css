@@ -15,7 +15,7 @@
   color: #fff;
 }
 .sidebar {
-  height: 100vh;
+  height: 93vh;
 }
 .bg-new-gray {
   background-color: #404040;
@@ -219,11 +219,18 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
   background-color: #1a1a1a !important;
 }
 .poweredBy {
-  margin-top: 45vh;
-  display: none;
+  /* margin-top: 45vh; */
+  /* display: none; */
+  position: absolute;
+  z-index: 5;
+  bottom: 20px;
+  left: 20px;
+  color: #989898;
+  width: 80%;
 }
 .poweredBy > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }

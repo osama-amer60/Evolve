@@ -68,7 +68,7 @@ export default function NavBar(props) {
                   <div className="col-lg-2 col-md-4 col-sm-6" >
                     <div className='d-flex align-items-center justify-content-between'>
                         <span>Lussail Std</span>
-                        <Link className="" to="edit"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
+                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
                         <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
                         
                     </div>
@@ -99,7 +99,7 @@ export default function NavBar(props) {
                   <div className="col-lg-2 col-md-4 col-sm-6" >
                     <div className='d-flex align-items-center justify-content-between'>
                         <span>Lussail Std</span>
-                        <Link className="" to="edit"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
+                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
                         <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
                         
                     </div>
@@ -130,7 +130,7 @@ export default function NavBar(props) {
                   <div className="col-lg-2 col-md-4 col-sm-6" >
                     <div className='d-flex align-items-center justify-content-between'>
                         <span>Lussail Std</span>
-                        <Link className="" to="edit"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
+                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
                         <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
                         
                     </div>
@@ -161,7 +161,7 @@ export default function NavBar(props) {
                   <div className="col-lg-2 col-md-4 col-sm-6" >
                     <div className='d-flex align-items-center justify-content-between'>
                         <span>Lussail Std</span>
-                        <Link className="" to="edit"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
+                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
                         <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
                         
                     </div>
