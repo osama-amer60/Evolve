@@ -2,19 +2,17 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Joi from 'joi'
 import axios from 'axios'
-
 import DropzoneDragDrop from './DropzoneDragDrop'
-
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-
 import { MultiSelect } from "react-multi-select-component";
 
 
-
 export default function CreateSession(props) {
+
+  
   const speakers = [
     { id:"1", first_name :"Genny" , last_name :"Wilson" , img:"person1.svg", position:"CEO of World International Energy Moderation Organization  ", email:"Genny@gmail.com" , label: "Genny Wilson", value: "Genny Wilson" },
     { id:"2", first_name :"Robert" , last_name :"Robert" , img:"person2.svg", position:"Executive at Green world peace ", email:"Robert@gmail.com" , label: "Robert Robert", value: "Robert Robert" },
@@ -46,8 +44,7 @@ export default function CreateSession(props) {
 
   //selectors
   const [speakerSelected, setSpeakerSelected] = useState([]);
-  function getSelectChange(e){
-    console.log(e);
+  function getSpeakerChange(e){
     session.speaker_ids = e.map(x => { return x.id });
     setSpeakerSelected(e)
   };
@@ -129,7 +126,7 @@ export default function CreateSession(props) {
     async  function  submitSessionForm(e){
       e.preventDefault()
       // setIsLoading(true)
-
+     
       //call validation function
       let validateResult =  validateSessionForm()
       const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
@@ -140,6 +137,7 @@ export default function CreateSession(props) {
         setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
+        // session.event_id =8
         axios({
           method: 'POST', 
           url: 'https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/create-sessions',
@@ -248,7 +246,7 @@ export default function CreateSession(props) {
                     <MultiSelect
                       options={speakers}
                       value={speakerSelected}
-                      onChange={getSelectChange}
+                      onChange={getSpeakerChange}
                       labelledBy="Select"
                       Select="Select-options"
                       isCreatable={true}
