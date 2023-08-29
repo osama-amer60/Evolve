@@ -23,10 +23,10 @@ function DropzoneDragDrop( { onFileDrop,data }) {
           <div className='d-flex align-items-center justify-content-center'>
           <div>
             <input  className='form-control ' type="text"  id='image'name='image'  {...getInputProps()} />
-            <div className="img-container">
+            <div className="img-container mt-4">
                <img src="Upload.svg" alt="" className='p-3 ' />
             </div>
-            <p className='mb-0 mt-4'> <strong>Click to upload</strong></p>
+            <p className='mb-0 '> <strong>Click to upload</strong></p>
             <p> or drag and drop</p>
           </div>
           </div>

@@ -10,7 +10,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MultiSelect } from "react-multi-select-component";
 
 
-export default function CreateSession(props) {
+export default function ShowSession(props) {
 
   
   const speakers = [
@@ -108,7 +108,7 @@ export default function CreateSession(props) {
   const fetchData = async () => {
     const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
 
-    axios.get('https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/session-details/172?event_id=8', 
+    axios.get('https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/session-details/174?event_id=8', 
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -190,9 +190,10 @@ export default function CreateSession(props) {
                 <Link to="/" className="p-2 px-4 fw-bolder cancel-btn  text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
                   <span >Cancel</span>
                 </Link>
-                <button  id="submitButton" type="submit" form="myForm"  className="p-2 px-4 fw-bolder bg-white  text-dark d-flex align-items-center justify-content-center text-dark text-decoration-none" >
-                  <span > Next</span>                
-                </button>
+                <Link to="/"  className="p-2 px-4 fw-bolder bg-white  text-dark d-flex align-items-center justify-content-center text-dark text-decoration-none" >
+                  <span >Next</span>
+                </Link>
+              
             </div>
           </div>
         </div>
@@ -226,7 +227,7 @@ export default function CreateSession(props) {
                    <input onChange={getSessionData} className='form-control' type="text"  id='subTitle'name='subTitle' value={session.subtitle}  placeholder='Start Typing...' />          
    
                    {/* upload image */}
-                   <DropzoneDragDrop onFileDrop={handleFileDrop} data={validateError}/>
+                   <DropzoneDragDrop onFileDrop={handleFileDrop} data={validateError} image={session.cover_image}/>
    
                    {/* time and date */}
                    <div className="row">

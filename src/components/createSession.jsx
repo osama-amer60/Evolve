@@ -61,8 +61,17 @@ export default function CreateSession(props) {
   //upload image
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const handleFileDrop = (acceptedFiles) => {
-    session.cover_image = acceptedFiles[0];
-    setUploadedFiles(acceptedFiles[0]);
+      const reader = new FileReader();
+      reader.readAsDataURL(acceptedFiles[0]);
+
+      reader.addEventListener("load", () => {
+        if (typeof reader.result === "string") {
+          // console.log(reader.result);
+          session.cover_image =  reader.result;
+          setUploadedFiles(acceptedFiles[0]);
+        }
+      });
+    
   };
   
   
@@ -103,7 +112,7 @@ export default function CreateSession(props) {
       subTitle  : Joi.string().required(),
       description : Joi.string().required(),
       date : Joi.string().required(),
-      cover_image: Joi.object().unknown(true),
+      cover_image: Joi.string().required(),
       from: Joi.object().unknown(true),
       till: Joi.object().unknown(true),
       event_id: Joi.array().items(Joi.string()),

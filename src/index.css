@@ -268,3 +268,14 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
   padding-top: 1px;
   padding-bottom: 1px;
 }
+.edit-delete-img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.edit-delete-img button {
+  background-color: #1a1a1a;
+  color: #fff;
+  width: 50px;
+  height: 50px;
+}
