@@ -234,3 +234,26 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.create-user .modal-content {
+  background-color: #252525 !important;
+}
+.profile-pic {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  background-image: url(/public/person3.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
+}
+.profile-pic > div {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.cancel-user {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}

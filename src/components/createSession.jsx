@@ -241,41 +241,53 @@ export default function CreateSession(props) {
 
                 {/* selectors */}
                 <hr class="my-5"/>
-                <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker">Speaker{ validateError.map((error, index) => error.message.includes('speaker_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
-                <div>
-                    <MultiSelect
-                      options={speakers}
-                      value={speakerSelected}
-                      onChange={getSpeakerChange}
-                      labelledBy="Select"
-                      Select="Select-options"
-                      isCreatable={true}
-                      closeOnChangedValue	={true}
 
-                      />
-                      {/* <pre>{JSON.stringify(speakerSelected.length)}</pre> */}
-                      {speakerSelected.length > 0?
-                          <div className=''>              
-                            {speakerSelected.map((speaker,i)=>
-                                  <div className='speaker  my-2 ' key={i}>              
-                                    <div className='row'>              
-                                      <div   className="col col-md-11">
-                                        <div className='d-flex align-items-center speaker-info py-3 px-3'>
-                                            <img src={speaker.img} alt="" width={36} height={36}/>
-                                            <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                            <span class="position"> {speaker.position}</span>
+                <div className="row">
+                  <div className="col-11">
+                    <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker">Speaker{ validateError.map((error, index) => error.message.includes('speaker_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
+                    <div>
+                        <MultiSelect
+                          options={speakers}
+                          value={speakerSelected}
+                          onChange={getSpeakerChange}
+                          labelledBy="Select"
+                          Select="Select-options"
+                          isCreatable={true}
+                          closeOnChangedValue	={true}
+
+                          />
+                          {/* <pre>{JSON.stringify(speakerSelected.length)}</pre> */}
+                          {speakerSelected.length > 0?
+                              <div className=''>              
+                                {speakerSelected.map((speaker,i)=>
+                                      <div className='speaker  my-2 ' key={i}>              
+                                        <div className='row'>              
+                                          <div   className="col col-md-11">
+                                            <div className='d-flex align-items-center speaker-info py-3 px-3'>
+                                                <img src={speaker.img} alt="" width={36} height={36}/>
+                                                <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
+                                                <span class="position"> {speaker.position}</span>
+                                            </div>
+                                          </div>
+                                          <div className="col col-1 ">
+                                            <div className='d-flex align-items-center justify-content-center w-100 h-100'>
+                                                <img src="delete.svg" alt=""  onClick={()=>removeSpeaker(i)}  width={28} height={28}/>
+                                            </div>
+                                          </div>
                                         </div>
                                       </div>
-                                      <div className="col col-1 ">
-                                        <div className='d-flex align-items-center justify-content-center w-100 h-100'>
-                                            <img src="delete.svg" alt=""  onClick={()=>removeSpeaker(i)}  width={28} height={28}/>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                            )}
-                          </div>:""}
-                </div>    
+                                )}
+                              </div>:""}
+                    </div>  
+                  </div>
+                  <div className="col-1">
+                    <div className='d-flex justify-content-end'>
+                        <Link to="/create-user" className="p-2 px-4 fw-bolder   text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
+                            <img src="pluse.svg" className="mt-5 pt-3 " width={20} alt="" />
+                        </Link>
+                    </div>
+                  </div>
+                </div>
 
                 <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker"> Moderator { validateError.map((error, index) => error.message.includes('moderator_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                 <div>
