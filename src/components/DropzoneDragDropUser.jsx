@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react'
+import React from 'react'
 import {useDropzone} from 'react-dropzone'
 
 function DropzoneDragDrop( { onFileDrop,data }) {
@@ -28,7 +28,6 @@ function DropzoneDragDrop( { onFileDrop,data }) {
             </div>
             <p className='mb-0 mt-4'> <strong>Click to upload</strong></p>
             <p> or drag and drop</p>
-            {/* <div> <strong>{files} </strong>  </div> */}
           </div>
           </div>
         </div>

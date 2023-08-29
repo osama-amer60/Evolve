@@ -10,9 +10,8 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MultiSelect } from "react-multi-select-component";
 
 
-export default function CreateSession(props) {
-
-  
+export default function CreateSession(props) {  
+  let navigate = useNavigate()
   const speakers = [
     { id:"1", first_name :"Genny" , last_name :"Wilson" , img:"person1.svg", position:"CEO of World International Energy Moderation Organization  ", email:"Genny@gmail.com" , label: "Genny Wilson", value: "Genny Wilson" },
     { id:"2", first_name :"Robert" , last_name :"Robert" , img:"person2.svg", position:"Executive at Green world peace ", email:"Robert@gmail.com" , label: "Robert Robert", value: "Robert Robert" },
@@ -22,10 +21,6 @@ export default function CreateSession(props) {
     {id:"8", title :"Lusail Stadium" , capacity :"3.000" , img:"stadium1.png", label: "Lusail Stadium", value: "Lusail Stadium" },
     { id:"2", title :"Ataturk Olympic Stadium" , capacity :"3.000" , img:"stadium1.png", label: "Ataturk Olympic Stadium", value: "Ataturk Olympic Stadium" },
   ];
-  let navigate = useNavigate()
-
-  const [isLoading,setIsLoading] =useState(false)
-  const [error,setError] = useState('')
 
   //session data
   const [session,setSession] = useState({
@@ -97,10 +92,6 @@ export default function CreateSession(props) {
 
   function removeSpeaker(id){
     console.log(id);
-    speakerSelected.splice(id,1)
-    console.log(speakerSelected);
-    let mySpeakers = {...speakerSelected}
-    // setUser(mySpeakers) 
   }
 
   
@@ -125,9 +116,8 @@ export default function CreateSession(props) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    // This code will run when the component is mounted
     fetchData();
-  }, []); // Empty dependency array means this effect runs only once after initial render
+  }, []); 
 
 
   const fetchData = async () => {
@@ -141,8 +131,6 @@ export default function CreateSession(props) {
         }    
     )
     .then(response => {
-      // Handle the successful response here
-      // console.log('Data:', response.data.users);
       let handleUser =  response.data.users     
       handleUser.map((user) => {
         user.label = user.first_name + " " + user.last_name
@@ -151,7 +139,6 @@ export default function CreateSession(props) {
       setUsers(handleUser)
     })
     .catch(error => {
-      // Handle errors here
       console.error('Error:', error);
     });
   };
@@ -161,17 +148,14 @@ export default function CreateSession(props) {
     //submit form
     async  function  submitSessionForm(e){
       e.preventDefault()
-      // setIsLoading(true)
-     console.log(session);
-     //call validation function
-     let validateResult =  validateSessionForm()
-     console.log(validateResult);
-      const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
+      
+    //call validation function
+    let validateResult =  validateSessionForm()
+    const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
 
       
       //if the validation function return error
       if(validateResult.error){
-        setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
         session.event_id =8
@@ -184,7 +168,6 @@ export default function CreateSession(props) {
           data: session
         })
           .then(response => {
-            // console.log(response.data);
             navigate('/')
           })
           .catch(error => {

@@ -3,19 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import Joi from 'joi'
 import axios from 'axios'
 import DropzoneDragDropUser from './DropzoneDragDropUser'
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-import { MultiSelect } from "react-multi-select-component";
 
 
 export default function CreateUser(props) {
-
   let navigate = useNavigate()
 
-  const [isLoading,setIsLoading] =useState(false)
-  const [error,setError] = useState('')
 
   //session data
   const [user,setUser] = useState({
@@ -32,11 +24,7 @@ export default function CreateUser(props) {
     setUploadedFiles(acceptedFiles[0]);
     };
   
-  
-
-
-
-
+ 
   //put user's properties's values from form
   function getUserData(e){
     let myUser = {...user}
@@ -61,7 +49,6 @@ export default function CreateUser(props) {
     //submit form
     async  function  submitUserForm(e){
       e.preventDefault()
-      // setIsLoading(true)
      
       //call validation function
       let validateResult =  validateUserForm()
@@ -70,10 +57,8 @@ export default function CreateUser(props) {
       
       //if the validation function return error
       if(validateResult.error){
-        setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
-        console.log(user);
         user.event_id= 8;
 
         axios({
@@ -85,7 +70,6 @@ export default function CreateUser(props) {
           data: user
         })
           .then(response => {
-            console.log(response.data);
             navigate('/create-session')
           })
           .catch(error => {

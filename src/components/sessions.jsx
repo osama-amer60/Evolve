@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function NavBar(props) {
+  const allSessions = [1,2,3,4,5,6]
   return (
     <>
     <div className='sessions'>
@@ -45,131 +46,37 @@ export default function NavBar(props) {
                   </div>
               </div>
           </div>
-          <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border'>
-              <div className="row">
-                  <div className="col-lg-6 col-md-4 col-sm-6  text-white" >
-                    <div>
-                        <img src="session.png" alt="" className='me-2' width={35} height={35} />
-                        <span>QAT vs ECU </span>
+          {allSessions.map((season) => (
+            <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border'>
+                <div className="row">
+                    <div className="col-lg-6 col-md-4 col-sm-6  text-white" >
+                      <div>
+                          <img src="session.png" alt="" className='me-2' width={35} height={35} />
+                          <span>QAT vs ECU </span>
+                      </div>
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
+                      <div>
+                          <img src="Itinerary.svg" alt="" className='mx-1' />
+                          <span>Sep/08/2022</span>
+                      </div>
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
+                      <div>
+                          <img src="clock-time.png" alt="" className='mx-1' />
+                          <span>00:00 - 00:00</span>
+                      </div>
+                    </div>
+                    <div className="col-lg-2 col-md-4 col-sm-6" >
+                      <div className='d-flex align-items-center justify-content-between'>
+                          <span>Lussail Std</span>
+                          <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
+                          <Link className="" to="show/5"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>                          
+                      </div>
                     </div>
                   </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="Itinerary.svg" alt="" className='mx-1' />
-                        <span>Sep/08/2022</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="clock-time.png" alt="" className='mx-1' />
-                        <span>00:00 - 00:00</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6" >
-                    <div className='d-flex align-items-center justify-content-between'>
-                        <span>Lussail Std</span>
-                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
-                        <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
-                        
-                    </div>
-                  </div>
-              </div>
-          </div>
-      
-          <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border'>
-              <div className="row">
-                  <div className="col-lg-6 col-md-4 col-sm-6  text-white" >
-                    <div>
-                        <img src="session.png" alt="" className='me-2' width={35} height={35} />
-                        <span>QAT vs ECU </span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="Itinerary.svg" alt="" className='mx-1' />
-                        <span>Sep/08/2022</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="clock-time.png" alt="" className='mx-1' />
-                        <span>00:00 - 00:00</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6" >
-                    <div className='d-flex align-items-center justify-content-between'>
-                        <span>Lussail Std</span>
-                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
-                        <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
-                        
-                    </div>
-                  </div>
-              </div>
-          </div>
-      
-          <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border'>
-              <div className="row">
-                  <div className="col-lg-6 col-md-4 col-sm-6  text-white" >
-                    <div>
-                        <img src="session.png" alt="" className='me-2' width={35} height={35} />
-                        <span>QAT vs ECU </span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="Itinerary.svg" alt="" className='mx-1' />
-                        <span>Sep/08/2022</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="clock-time.png" alt="" className='mx-1' />
-                        <span>00:00 - 00:00</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6" >
-                    <div className='d-flex align-items-center justify-content-between'>
-                        <span>Lussail Std</span>
-                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
-                        <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
-                        
-                    </div>
-                  </div>
-              </div>
-          </div>
-      
-          <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border'>
-              <div className="row">
-                  <div className="col-lg-6 col-md-4 col-sm-6  text-white" >
-                    <div>
-                        <img src="session.png" alt="" className='me-2' width={35} height={35} />
-                        <span>QAT vs ECU </span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="Itinerary.svg" alt="" className='mx-1' />
-                        <span>Sep/08/2022</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6 text-center" >
-                    <div>
-                        <img src="clock-time.png" alt="" className='mx-1' />
-                        <span>00:00 - 00:00</span>
-                    </div>
-                  </div>
-                  <div className="col-lg-2 col-md-4 col-sm-6" >
-                    <div className='d-flex align-items-center justify-content-between'>
-                        <span>Lussail Std</span>
-                        <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
-                        <Link className="" to="show"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>
-                        
-                    </div>
-                  </div>
-              </div>
-          </div>
-      
-
+                </div>
+          ))}    
         </div>
       </div>
     </div>

@@ -24,8 +24,6 @@ export default function CreateSession(props) {
   ];
   let navigate = useNavigate()
 
-  const [isLoading,setIsLoading] =useState(false)
-  const [error,setError] = useState('')
 
   //session data
   const [session,setSession] = useState({
@@ -96,9 +94,7 @@ export default function CreateSession(props) {
   }
 
   function removeSpeaker(id){
-    console.log(id);
     speakerSelected.splice(id,1)
-    console.log(speakerSelected);
     let mySpeakers = {...speakerSelected}
     // setUser(mySpeakers) 
   }
@@ -125,7 +121,6 @@ export default function CreateSession(props) {
     //submit form
     async  function  submitSessionForm(e){
       e.preventDefault()
-      // setIsLoading(true)
      
       //call validation function
       let validateResult =  validateSessionForm()
@@ -134,7 +129,6 @@ export default function CreateSession(props) {
       
       //if the validation function return error
       if(validateResult.error){
-        setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
         // session.event_id =8
@@ -147,7 +141,6 @@ export default function CreateSession(props) {
           data: session
         })
           .then(response => {
-            console.log(response.data);
             navigate('/')
           })
           .catch(error => {

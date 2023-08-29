@@ -11,9 +11,6 @@ export default function NavBar(props) {
                 <Link to="/">
                     <img src="Frame.svg" alt=""  class="pe-5 me-3"/>
                 </Link>
-
-
-                {/* <img src="arrow.svg" alt=""  className="ms-5 ps-5" width={75}/> */}
             </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

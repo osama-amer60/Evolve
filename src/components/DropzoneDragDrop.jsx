@@ -31,10 +31,6 @@ function DropzoneDragDrop( { onFileDrop,data }) {
           </div>
         </div>
       </div>
-      {/* <aside>
-        <h4>Files</h4> 
-        <ul>{files}</ul>
-      </aside> */}
     </section>
   );
 
