@@ -3,7 +3,7 @@ import Layout from "./components/layout/layout";
 import Index from "../src/components/index";
 import CreateSession from "../src/components/createSession";
 import CreateUser from "../src/components/createUser";
-import EditSession from "../src/components/editSession";
+import ShowSession from "../src/components/showSession";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
@@ -14,8 +14,8 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="create-session" element={<CreateSession />} />
         <Route path="create-user" element={<CreateUser />} />
-        <Route path="edit-session">
-          <Route path=":id" element={<EditSession />} />
+        <Route path="show-session">
+          <Route path=":id" element={<ShowSession />} />
         </Route>
       </Routes>
     </Layout>

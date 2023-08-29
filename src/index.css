@@ -203,6 +203,17 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
 .css-16jesut > .ps-menu-button:hover {
   background-color: transparent !important;
 }
+.ps-sidebar-root.ps-collapsed.css-1wvake5 + main .collapse-btn {
+  rotate: 180deg;
+  text-align: end;
+}
+.ps-sidebar-root.ps-collapsed.css-1wvake5 + main .collapse-btn img {
+  display: inline-block;
+  padding-right: 3rem;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
 .collapse-btn {
   position: absolute;
   top: -50px;

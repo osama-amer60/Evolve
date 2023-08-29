@@ -30,7 +30,7 @@ export default function NavBar(props) {
           <main style={{ padding: 10 }}>
               <div>
                 <button className="sb-button collapse-btn" onClick={() => setCollapsed(!collapsed)}>
-                <img src="arrow.svg" alt=""  className="ms-5 ps-5" width={75}/>
+                <img src="arrow.svg" alt=""  className="ms-5 ps-5 close-side-bar-icon" width={75} />
                 </button>
               </div>
           </main>          

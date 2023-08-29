@@ -70,8 +70,8 @@ export default function NavBar(props) {
                     <div className="col-lg-2 col-md-4 col-sm-6" >
                       <div className='d-flex align-items-center justify-content-between'>
                           <span>Lussail Std</span>
-                          <Link className="" to="edit-session/5"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
-                          <Link className="" to="show/5"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>                          
+                          <Link className="" to="show-session/172"><img src="Edit.svg" alt="" className='mx-1' /> </Link>
+                          <Link className="" to="show-session/172"><img src="Chevron right.svg" alt="" className='mx-1' /> </Link>                          
                       </div>
                     </div>
                   </div>
