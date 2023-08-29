@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import Joi from 'joi'
 import axios from 'axios'
@@ -116,19 +116,56 @@ export default function CreateSession(props) {
       from: Joi.object().unknown(true),
       till: Joi.object().unknown(true),
       event_id: Joi.array().items(Joi.string()),
-      moderator_ids: Joi.array().items(Joi.string()),
-      speaker_ids: Joi.array().items(Joi.string()),
+      moderator_ids: Joi.array(),
+      speaker_ids: Joi.array(),
     })
     return scheme.validate(session,{abortEarly:false})
   }
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // This code will run when the component is mounted
+    fetchData();
+  }, []); // Empty dependency array means this effect runs only once after initial render
+
+
+  const fetchData = async () => {
+    const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
+
+    axios.get('https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/get-users?event_id=8&offset=0&limit=10', 
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        }    
+    )
+    .then(response => {
+      // Handle the successful response here
+      // console.log('Data:', response.data.users);
+      let handleUser =  response.data.users     
+      handleUser.map((user) => {
+        user.label = user.first_name + " " + user.last_name
+        user.value = user.first_name + " " + user.last_name
+      }) 
+      setUsers(handleUser)
+    })
+    .catch(error => {
+      // Handle errors here
+      console.error('Error:', error);
+    });
+  };
+
+
 
     //submit form
     async  function  submitSessionForm(e){
       e.preventDefault()
       // setIsLoading(true)
-     
-      //call validation function
-      let validateResult =  validateSessionForm()
+     console.log(session);
+     //call validation function
+     let validateResult =  validateSessionForm()
+     console.log(validateResult);
       const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
 
       
@@ -137,7 +174,7 @@ export default function CreateSession(props) {
         setIsLoading(false)
         setValidateError(validateResult.error.details)
       }else{
-        // session.event_id =8
+        session.event_id =8
         axios({
           method: 'POST', 
           url: 'https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/create-sessions',
@@ -147,7 +184,7 @@ export default function CreateSession(props) {
           data: session
         })
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             navigate('/')
           })
           .catch(error => {
@@ -181,6 +218,7 @@ export default function CreateSession(props) {
 
         <div className="container ">
           <div className='mx-5'>
+            
             <div className="form-container mx-5 p-5">
               <form onSubmit={submitSessionForm} id="myForm" className=''>
                 <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
@@ -247,12 +285,11 @@ export default function CreateSession(props) {
                     <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker">Speaker{ validateError.map((error, index) => error.message.includes('speaker_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                     <div>
                         <MultiSelect
-                          options={speakers}
+                          options={users}
                           value={speakerSelected}
                           onChange={getSpeakerChange}
                           labelledBy="Select"
-                          Select="Select-options"
-                          isCreatable={true}
+                          Select="Select-options"                          
                           closeOnChangedValue	={true}
 
                           />
@@ -264,9 +301,9 @@ export default function CreateSession(props) {
                                         <div className='row'>              
                                           <div   className="col col-md-11">
                                             <div className='d-flex align-items-center speaker-info py-3 px-3'>
-                                                <img src={speaker.img} alt="" width={36} height={36}/>
+                                                <img src={speaker.avatar? speaker.avatar : 'person3.svg' } className='rounded-circle' alt="" width={36} height={36}/>
                                                 <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                                <span class="position"> {speaker.position}</span>
+                                                <span class="position"> {speaker.email ? speaker.email : 'email@gmail.com'}</span>
                                             </div>
                                           </div>
                                           <div className="col col-1 ">
@@ -283,7 +320,7 @@ export default function CreateSession(props) {
                   <div className="col-1">
                     <div className='d-flex justify-content-end'>
                         <Link to="/create-user" className="p-2 px-4 fw-bolder   text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
-                            <img src="pluse.svg" className="mt-5 pt-3 " width={20} alt="" />
+                            <img src="pluse.svg" className="mt-5 pt-2 " width={20} alt="" />
                         </Link>
                     </div>
                   </div>
@@ -292,12 +329,11 @@ export default function CreateSession(props) {
                 <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker"> Moderator { validateError.map((error, index) => error.message.includes('moderator_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                 <div>
                     <MultiSelect
-                      options={speakers}
+                      options={users}
                       value={moderatorSelected}
                       onChange={getModeratorSelected}
                       labelledBy="Select"
-                      Select="Select-options"
-                      isCreatable={true}
+                      Select="Select-options"                      
                       closeOnChangedValue	={true}
 
                       />
@@ -309,9 +345,9 @@ export default function CreateSession(props) {
                                       <div   className="col col-md-11">
                                         {/* {JSON.stringify(speaker)} */}
                                         <div className='d-flex align-items-center speaker-info py-3 px-3'>
-                                            <img src={speaker.img} alt="" width={36} height={36}/>
+                                        <img src={speaker.avatar? speaker.avatar : 'person3.svg' } className='rounded-circle' alt="" width={36} height={36}/>
                                             <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                            <span class="position"> {speaker.position}</span>
+                                            <span class="position"> {speaker.email ? speaker.email : 'email@gmail.com'}</span>
                                         </div>
                                       </div>
                                       <div className="col col-1 ">
@@ -334,8 +370,7 @@ export default function CreateSession(props) {
                       value={venueSelected}
                       onChange={getVenueSelected}
                       labelledBy="Select"
-                      Select="Select-options"
-                      isCreatable={true}
+                      Select="Select-options"                      
                       closeOnChangedValue	={true}
 
                       />
