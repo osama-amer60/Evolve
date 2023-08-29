@@ -133,7 +133,7 @@ export default function CreateSession(props) {
   const fetchData = async () => {
     const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
 
-    axios.get('https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/get-users?event_id=8&offset=0&limit=10', 
+    axios.get('https://qa-testing-backend-293b1363694d.herokuapp.com/api/v3/get-users?event_id=8&offset=0&limit=1000', 
         {
           headers: {
             'Authorization': `Bearer ${token}`,
