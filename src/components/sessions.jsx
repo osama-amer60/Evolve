@@ -46,8 +46,8 @@ export default function NavBar(props) {
                   </div>
               </div>
           </div>
-          {allSessions.map((season) => (
-            <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border'>
+          {allSessions.map((season , i) => (
+            <div className='sessions-list-body sessions-body-bg sessions-body-color py-3 px-3 sessions-border' key={i}>
                 <div className="row">
                     <div className="col-lg-6 col-md-4 col-sm-6  text-white" >
                       <div>

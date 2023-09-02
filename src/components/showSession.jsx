@@ -202,8 +202,8 @@ export default function ShowSession(props) {
           <div className='mx-5'>
             {!session.till ? 
                  <div className='pt-5 mt-5 d-flex '>
-                  <div class="spinner-border text-light  mx-auto" role="status">
-                    <span class="visually-hidden">Loading...</span>
+                  <div className="spinner-border text-light  mx-auto" role="status">
+                    <span className="visually-hidden">Loading...</span>
                   </div>
                  </div> 
                :
@@ -267,7 +267,7 @@ export default function ShowSession(props) {
                  
    
                    {/* selectors */}
-                   <hr class="my-5"/>
+                   <hr className="my-5"/>
                    <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker">Speaker{ validateError.map((error, index) => error.message.includes('speaker_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                    <div>
                        <MultiSelect
@@ -290,7 +290,7 @@ export default function ShowSession(props) {
                                            <div className='d-flex align-items-center speaker-info py-3 px-3'>
                                                <img src={speaker.avatar? speaker.avatar :"person3.svg"} alt="" width={36} height={36}/>
                                                <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                               <span class="position"> {speaker.position}</span>
+                                               <span className="position"> {speaker.position}</span>
                                            </div>
                                          </div>
                                          <div className="col col-1 ">
@@ -326,7 +326,7 @@ export default function ShowSession(props) {
                                            <div className='d-flex align-items-center speaker-info py-3 px-3'>
                                                <img  src={speaker.avatar? speaker.avatar :"person3.svg"} alt="" width={36} height={36}/>
                                                <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                               <span class="position"> {speaker.position}</span>
+                                               <span className="position"> {speaker.position}</span>
                                            </div>
                                          </div>
                                          <div className="col col-1 ">
@@ -341,7 +341,7 @@ export default function ShowSession(props) {
                    </div>
    
          
-                   <hr class="my-5"/>
+                   <hr className="my-5"/>
                    <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="Venue"> Venue { validateError.map((error, index) => error.message.includes('event_id') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                    <div>
                        <MultiSelect
@@ -362,7 +362,7 @@ export default function ShowSession(props) {
                                                <img src={session?.venue?.image} alt="" width={180} height={100}/>
                                              <div className='mx-3'>
                                                  <h4 > <strong>{session?.venue?.name} </strong></h4>
-                                                 <p class="position">Venue Capacity:  {session?.venue?.capacity}</p>
+                                                 <p className="position">Venue Capacity:  {session?.venue?.capacity}</p>
                                              </div>
                                            </div>
                                          </div>

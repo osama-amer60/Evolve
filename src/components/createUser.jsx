@@ -14,14 +14,23 @@ export default function CreateUser(props) {
     first_name:'',
     last_name:'',
     email:'',
-    image :'',
+    image :{},
+    event_id:""
   })
 
   //upload image
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const handleFileDrop = (acceptedFiles) => {
-    user.image = acceptedFiles[0];
-    setUploadedFiles(acceptedFiles[0]);
+    const reader = new FileReader();
+    reader.readAsDataURL(acceptedFiles[0]);
+
+    reader.addEventListener("load", () => {
+      if (typeof reader.result === "string") {
+        user.image =  reader.result;
+        setUploadedFiles(acceptedFiles[0]);
+      }
+    });
+    
     };
   
  
@@ -40,26 +49,33 @@ export default function CreateUser(props) {
     let scheme = Joi.object({
       first_name : Joi.string().required(),
       last_name : Joi.string().required(),
+      event_id : Joi.string().required(),
       email: Joi.string().email({ tlds: { allow: false } }).required(),
       image: Joi.object().unknown(true),
     })
     return scheme.validate(user,{abortEarly:false})
   }
 
+
+  const [errors,setErrors] = useState('')
+
     //submit form
     async  function  submitUserForm(e){
+      console.log('again');
       e.preventDefault()
-     
+      
       //call validation function
+      user.event_id= '8';
       let validateResult =  validateUserForm()
       const token = 'eyJhbGciOiJSUzI1NiJ9.eyJpZCI6MjEyLCJ0eXBlIjoidXNlciIsInJhbiI6IkFQWEVFT0hMWEhSWk1ISlRUWFNZIiwic3RhdHVzIjoxfQ.ZgAWMwcCTYvVTARUT8wjxGCpLn5vRsDEt-zpzIPhsRN4np-sqWZ6YpCOPZsD40MWPjCfAepXdLIRW6JLiJYla8AHTogRMY-UIyqq8KvxhO8euOGVLLm6-jbhws7h4uznwQrc8mb8IywKm0Qagm2i5NdM9bRotWWW3viNXVxAOXfpx5ciRCSLlCAEisC47s5n7GM2ytT2BIeLEnSK1p9XvrF7-1Z-F8yjsKTG29wjejjZcanvY2_j53nR62glm-ZvIhP6jXPLlEaE1jttfOYC3BaJSHbdYdEXzSLzsAaB2HI1ZmtFdat7d0cKsSvCgu6Z73uzvC6oOtbhywQQfu2lOw';
-
+      
       
       //if the validation function return error
       if(validateResult.error){
+        console.log('again validate');
+        console.log(validateResult);
         setValidateError(validateResult.error.details)
       }else{
-        user.event_id= 8;
 
         axios({
           method: 'POST', 
@@ -69,11 +85,14 @@ export default function CreateUser(props) {
           },
           data: user
         })
-          .then(response => {
-            navigate('/create-session')
-          })
-          .catch(error => {
-            console.error(error);
+          .then(response => {            
+              console.log(response);
+              console.log('response' );
+              navigate('/create-session')
+              
+            })
+            .catch(error => {
+            setErrors(error)
           });
       }
   }
@@ -110,7 +129,9 @@ export default function CreateUser(props) {
                 
                 <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="email">Email { validateError.map((error, index) => error.message.includes('email') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                 <input onChange={getUserData} className='form-control'  type="text"  id='email' name='email' placeholder='john@gmail.com'/>
-                
+                <span className="error pt-1 h8 ps-3 d-inline-block">{errors?'email has already been taken':''}</span>
+
+
                 <div className="d-flex align-items-center justify-content-between mt-4"> 
                   <Link to="/create-session" className="p-2 px-5 fw-bolder cancel-btn  text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
                     <span className='mx-3 cancel-user' >Cancel</span>

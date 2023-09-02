@@ -270,7 +270,7 @@ export default function CreateSession(props) {
               
 
                 {/* selectors */}
-                <hr class="my-5"/>
+                <hr className="my-5"/>
 
                 <div className="row">
                   <div className="col-11">
@@ -295,7 +295,7 @@ export default function CreateSession(props) {
                                             <div className='d-flex align-items-center speaker-info py-3 px-3'>
                                                 <img src={speaker.avatar? speaker.avatar : 'person3.svg' } className='rounded-circle' alt="" width={36} height={36}/>
                                                 <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                                <span class="position"> {speaker.email ? speaker.email : 'email@gmail.com'}</span>
+                                                <span className="position"> {speaker.email ? speaker.email : 'email@gmail.com'}</span>
                                             </div>
                                           </div>
                                           <div className="col col-1 ">
@@ -339,7 +339,7 @@ export default function CreateSession(props) {
                                         <div className='d-flex align-items-center speaker-info py-3 px-3'>
                                         <img src={speaker.avatar? speaker.avatar : 'person3.svg' } className='rounded-circle' alt="" width={36} height={36}/>
                                             <span className='mx-2'> {speaker.first_name}  {speaker.last_name}</span>
-                                            <span class="position"> {speaker.email ? speaker.email : 'email@gmail.com'}</span>
+                                            <span className="position"> {speaker.email ? speaker.email : 'email@gmail.com'}</span>
                                         </div>
                                       </div>
                                       <div className="col col-1 ">
@@ -354,7 +354,7 @@ export default function CreateSession(props) {
                 </div>
 
       
-                <hr class="my-5"/>
+                <hr className="my-5"/>
                 <label className='mt-4 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker"> Venue { validateError.map((error, index) => error.message.includes('event_id') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                 <div>
                     <MultiSelect
@@ -376,7 +376,7 @@ export default function CreateSession(props) {
                                             <img src={speaker.img} alt="" width={180} height={100}/>
                                           <div className='mx-3'>
                                               <h4 > <strong>{speaker.title} </strong></h4>
-                                              <p class="position">Venue Capacity:  {speaker.capacity}</p>
+                                              <p className="position">Venue Capacity:  {speaker.capacity}</p>
                                           </div>
                                         </div>
                                       </div>
