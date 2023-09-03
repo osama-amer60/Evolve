@@ -209,9 +209,9 @@ export default function CreateSession(props) {
         </div>
 
         <div className="container ">
-          <div className='mx-5'>
+          <div className='mx-xl-5'>
             
-            <div className="form-container mx-5 p-5">
+            <div className="form-container mx-xl-5  p-4 p-xl-5">
               <form onSubmit={submitSessionForm} id="myForm" className=''>
                 <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                 <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' placeholder='Start Typing...'/>
@@ -273,7 +273,7 @@ export default function CreateSession(props) {
                 <hr className="my-5"/>
 
                 <div className="row">
-                  <div className="col-11">
+                  <div className="col-10 col-xl-11">
                     <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="speaker">Speaker{ validateError.map((error, index) => error.message.includes('speaker_ids') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                     <div>
                         <MultiSelect
@@ -309,7 +309,7 @@ export default function CreateSession(props) {
                               </div>:""}
                     </div>  
                   </div>
-                  <div className="col-1">
+                  <div className="col-2 col-xl-1">
                     <div className='d-flex justify-content-end'>
                         <Link to="/create-user" className="p-2 px-4 fw-bolder   text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
                             <img src="pluse.svg" className="mt-5 pt-2 " width={20} alt="" />

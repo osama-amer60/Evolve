@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Joi from 'joi'
 import axios from 'axios'
 import DropzoneDragDropUser from './DropzoneDragDropUser'
+import { Image } from 'cloudinary-react';
+import cloudinaryConfig from '../cloudinaryConfig';
 
 
 export default function CreateUser(props) {
@@ -20,16 +22,45 @@ export default function CreateUser(props) {
 
   //upload image
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const handleFileDrop = (acceptedFiles) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(acceptedFiles[0]);
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    console.log('file', file);
+    console.log('FormData object:', formData);
+    formData.append('upload_preset', 'iavj9ti2'); // Create an upload preset in your Cloudinary dashboard
 
-    reader.addEventListener("load", () => {
-      if (typeof reader.result === "string") {
-        user.image =  reader.result;
-        setUploadedFiles(acceptedFiles[0]);
-      }
+
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloud_name}/image/upload`, {
+      method: 'POST',
+      body: file,
     });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.secure_url; // The URL of the uploaded image
+    } else {
+      // Handle error
+      console.error('Error uploading image to Cloudinary');
+    }
+  };
+
+  const handleFileDrop = async (acceptedFiles) => {
+    // const reader = new FileReader();
+    // reader.readAsDataURL(acceptedFiles[0]);
+
+    // reader.addEventListener("load", () => {
+    //   if (typeof reader.result === "string") {
+    //     const cld = new Cloudinary({cloud: {cloudName: 'du4qd2ivp'}});
+
+    //     user.image =  reader.result;
+    //     setUploadedFiles(acceptedFiles[0]);
+    //   }
+    // });
+
+    if (acceptedFiles[0]) {
+      const imageUrl = await uploadImage(acceptedFiles[0]);
+      console.log('Uploaded image URL:', imageUrl);
+    }
     
     };
   
@@ -114,7 +145,7 @@ export default function CreateUser(props) {
 
         <div className="container ">
           <div className='row'>
-            <div className="col-5 offset-3">
+            <div className="col-12  col-xl-8  offset-xl-2 col-xxl-6  offset-xxl-3">
             <div className="form-container mx-5 p-4">
               <form onSubmit={submitUserForm} id="userForm" className='p-1'>
                 <h5 className='mb-4'>Add Speaker</h5>
@@ -132,11 +163,11 @@ export default function CreateUser(props) {
                 <span className="error pt-1 h8 ps-3 d-inline-block">{errors?'email has already been taken':''}</span>
 
 
-                <div className="d-flex align-items-center justify-content-between mt-4"> 
-                  <Link to="/create-session" className="p-2 px-5 fw-bolder cancel-btn  text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
+                <div className="d-flex align-items-center justify-content-between mt-4 flex-wrap"> 
+                  <Link to="/create-session" className="p-2 px-4 px-lg-5 fw-bolder cancel-btn  text-white d-flex align-items-center justify-content-center text-dark text-decoration-none" >
                     <span className='mx-3 cancel-user' >Cancel</span>
                   </Link>
-                  <button  id="submitButton" type="submit" form="userForm"  className="p-2 px-5 fw-bolder bg-white  text-dark d-flex align-items-center justify-content-center text-dark text-decoration-none" >
+                  <button  id="submitButton" type="submit" form="userForm"  className="p-2 px-4 px-lg-5 fw-bolder bg-white  text-dark d-flex align-items-center justify-content-center text-dark text-decoration-none" >
                     <span className='mx-3'> Add</span>                
                   </button>
               </div>

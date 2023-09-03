@@ -14,16 +14,16 @@ export default function NavBar(props) {
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <div className="mx-auto  ">
-                    <div className="bg-new-gray px-3 py-2 d-flex align-items-center">
-                        <div className='d-flex align-items-center pe-5'>
+                <div className="mx-auto  d-flex align-items-center justify-content-center  pt-4 pt-lg-0">
+                    <div className="bg-new-gray px-3 py-2 d-flex align-items-center ">
+                        <div className='d-flex align-items-center  pe-5'>
                             <img src="cup.svg" alt=""  className=" pe-1"/>
                             <span className='fs-6 fw-bold'>WorldCup 2022 Event</span>
                         </div>
                             <img src="arrow1.svg" alt=""  className="ps-5 ms-5"/>
                     </div>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex justify-content-center pt-4 pt-lg-0 ">
                     <div className="mx-2">                
                         <div className='bg-new-gray px-2 py-2'>
                             <img src="Notifications.svg" alt=""  className=""/>
