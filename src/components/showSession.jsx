@@ -199,7 +199,7 @@ export default function ShowSession(props) {
         </div>
 
         <div className="container ">
-          <div className='mx-5'>
+        <div className='mx-xl-5'>
             {!session.till ? 
                  <div className='pt-5 mt-5 d-flex '>
                   <div className="spinner-border text-light  mx-auto" role="status">
@@ -207,8 +207,8 @@ export default function ShowSession(props) {
                   </div>
                  </div> 
                :
-                 <div className="form-container mx-5 p-5">
-                 <form onSubmit={submitSessionForm} id="myForm" className=''>
+               <div className="form-container mx-xl-5  p-4 p-xl-5">
+               <form onSubmit={submitSessionForm} id="myForm" className=''>
                    
                    <label className='mt-3 mb-2 sessions-body-color d-flex align-items-start' htmlFor="title">Session Title { validateError.map((error, index) => error.message.includes('title') ? <span key={index} className='error d-flex  mx-1 pt-1'> <img src="star.svg"/></span>:"")}</label>
                    <input onChange={getSessionData} className='form-control'  type="text"  id='title' name='title' value={session.title} placeholder='Start Typing...'/>
