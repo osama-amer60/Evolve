@@ -100,7 +100,12 @@ export default function CreateSession(props) {
   }
 
   function removeSpeaker(id){
-    console.log(id);
+    let newSpeaker =  speakerSelected.filter((el) => el.id != id)
+    setSpeakerSelected(newSpeaker)
+  }
+  function removeModerator(id){
+    let newModerator =  moderatorSelected.filter((el) => el.id != id)
+    setModeratorSelected(newModerator)
   }
 
   
@@ -300,7 +305,7 @@ export default function CreateSession(props) {
                                           </div>
                                           <div className="col col-1 ">
                                             <div className='d-flex align-items-center justify-content-center w-100 h-100'>
-                                                <img src="delete.svg" alt=""  onClick={()=>removeSpeaker(i)}  width={28} height={28}/>
+                                                <img src="delete.svg" alt="" className='removeSpeaker'  onClick={()=>removeSpeaker(speaker.id)}  width={28} height={28}/>
                                             </div>
                                           </div>
                                         </div>
@@ -344,7 +349,7 @@ export default function CreateSession(props) {
                                       </div>
                                       <div className="col col-1 ">
                                         <div className='d-flex align-items-center justify-content-center w-100 h-100'>
-                                            <img src="delete.svg" alt=""  onClick={()=>removeSpeaker(i)}  width={28} height={28}/>
+                                            <img src="delete.svg" alt="" className='removeSpeaker'  onClick={()=>removeModerator(speaker.id)}  width={28} height={28}/>
                                         </div>
                                       </div>
                                     </div>

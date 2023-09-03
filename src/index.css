@@ -285,3 +285,6 @@ input[type="date"].date-input--has-value::-webkit-datetime-edit-year-field {
     min-width: 150px !important; */
   }
 }
+.removeSpeaker {
+  cursor: pointer;
+}
