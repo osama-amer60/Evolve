@@ -3,13 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import Joi from 'joi'
 import axios from 'axios'
 import DropzoneDragDropUser from './DropzoneDragDropUser'
-import { Image } from 'cloudinary-react';
-import cloudinaryConfig from '../cloudinaryConfig';
-
 
 export default function CreateUser(props) {
   let navigate = useNavigate()
-
 
   //session data
   const [user,setUser] = useState({
@@ -22,49 +18,18 @@ export default function CreateUser(props) {
 
   //upload image
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  const uploadImage = async (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    console.log('file', file);
-    console.log('FormData object:', formData);
-    formData.append('upload_preset', 'iavj9ti2'); // Create an upload preset in your Cloudinary dashboard
-
-
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloud_name}/image/upload`, {
-      method: 'POST',
-      body: file,
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      return data.secure_url; // The URL of the uploaded image
-    } else {
-      // Handle error
-      console.error('Error uploading image to Cloudinary');
-    }
-  };
-
-  const handleFileDrop = async (acceptedFiles) => {
-    // const reader = new FileReader();
-    // reader.readAsDataURL(acceptedFiles[0]);
-
-    // reader.addEventListener("load", () => {
-    //   if (typeof reader.result === "string") {
-    //     const cld = new Cloudinary({cloud: {cloudName: 'du4qd2ivp'}});
-
-    //     user.image =  reader.result;
-    //     setUploadedFiles(acceptedFiles[0]);
-    //   }
-    // });
-
-    if (acceptedFiles[0]) {
-      const imageUrl = await uploadImage(acceptedFiles[0]);
-      console.log('Uploaded image URL:', imageUrl);
-    }
-    
-    };
+  const handleFileDrop = (acceptedFiles) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(acceptedFiles[0]);
+    reader.addEventListener("load", () => {
+      if (typeof reader.result === "string") {
+        user.image.path =  reader.result;
+        setUploadedFiles(acceptedFiles[0]);
+      }
   
- 
+    })
+  }
+  
   //put user's properties's values from form
   function getUserData(e){
     let myUser = {...user}
@@ -103,7 +68,6 @@ export default function CreateUser(props) {
       
       //if the validation function return error
       if(validateResult.error){
-        console.log('again validate');
         console.log(validateResult);
         setValidateError(validateResult.error.details)
       }else{
@@ -117,8 +81,6 @@ export default function CreateUser(props) {
           data: user
         })
           .then(response => {            
-              console.log(response);
-              console.log('response' );
               navigate('/create-session')
               
             })
@@ -170,8 +132,7 @@ export default function CreateUser(props) {
                   <button  id="submitButton" type="submit" form="userForm"  className="p-2 px-4 px-lg-5 fw-bolder bg-white  text-dark d-flex align-items-center justify-content-center text-dark text-decoration-none" >
                     <span className='mx-3'> Add</span>                
                   </button>
-              </div>
-
+                </div>
               </form> 
             </div>
             </div>
