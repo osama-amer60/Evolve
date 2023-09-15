@@ -12,7 +12,7 @@
 - react-dom ,
 - react-router-dom
 
-## plugins
+## Features
 
 - create user
 - create session
